@@ -12,6 +12,8 @@ cd
 wget https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
 bash install-release.sh
 wget -O /usr/local/etc/v2ray/config.json https://www.dropbox.com/s/jzexwjb0w0y3ztx/config.json
+systemctl enable v2ray
+systemctl start v2ray
 
 echo "<script type="text/javascript">
 <!-- 
