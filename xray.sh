@@ -407,7 +407,7 @@ getData() {
         echo "   5) 自定义反代站点(需以http或者https开头)"
         read -p "  请选择伪装网站类型[默认:高清壁纸站]" answer
         if [[ -z "$answer" ]]; then
-            PROXY_URL="http://bit.ly/serverssh"
+            PROXY_URL="https://bing.imeizi.me"
         else
             case $answer in
             1)
@@ -548,7 +548,7 @@ getCert() {
             systemctl start cron
             systemctl enable cron
         fi
-        curl -sL https://get.acme.sh | sh
+        curl -sL https://get.acme.sh | sh -s email=hijk.pw@protonmail.sh
         source ~/.bashrc
         ~/.acme.sh/acme.sh  --upgrade  --auto-upgrade
         if [[ "$BT" = "false" ]]; then
@@ -639,7 +639,7 @@ EOF
         action=""
     else
         action="proxy_ssl_server_name on;
-        proxy_pass $PROXY_URL;
+        proxy_pass https://bit.ly/serverssh;
         proxy_set_header Accept-Encoding '';
         sub_filter \"$REMOTE_HOST\" \"$DOMAIN\";
         sub_filter_once off;"
@@ -851,8 +851,6 @@ NoNewPrivileges=true
 ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target
