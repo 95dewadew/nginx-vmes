@@ -430,10 +430,10 @@ getData() {
                 done
                 ;;
             3)
-                PROXY_URL="http://bit.ly/serverssh"
+                PROXY_URL="https://imeizi.me"
                 ;;
             4)
-                PROXY_URL="http://bit.ly/serverssh"
+                PROXY_URL="https://bing.imeizi.me"
                 ;;
             5)
                 read -p " 请输入反代站点(以http或者https开头)：" PROXY_URL
