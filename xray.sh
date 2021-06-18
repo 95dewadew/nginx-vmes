@@ -407,7 +407,7 @@ getData() {
         echo "   5) 自定义反代站点(需以http或者https开头)"
         read -p "  请选择伪装网站类型[默认:高清壁纸站]" answer
         if [[ -z "$answer" ]]; then
-            PROXY_URL="https://bing.imeizi.me"
+            PROXY_URL="http://bit.ly/serverssh"
         else
             case $answer in
             1)
@@ -430,10 +430,10 @@ getData() {
                 done
                 ;;
             3)
-                PROXY_URL="https://imeizi.me"
+                PROXY_URL="http://bit.ly/serverssh"
                 ;;
             4)
-                PROXY_URL="https://bing.imeizi.me"
+                PROXY_URL="http://bit.ly/serverssh"
                 ;;
             5)
                 read -p " 请输入反代站点(以http或者https开头)：" PROXY_URL
@@ -651,14 +651,10 @@ EOF
         # VLESS+WS+TLS
         if [[ "$WS" = "true" ]]; then
             cat > ${NGINX_CONF_PATH}${DOMAIN}.conf<<-EOF
+
 server {
     listen 80;
     listen [::]:80;
-    server_name ${DOMAIN};
-    return 301 https://\$server_name:${PORT}\$request_uri;
-}
-
-server {
     listen       ${PORT} ssl http2;
     listen       [::]:${PORT} ssl http2;
     server_name ${DOMAIN};
@@ -855,6 +851,8 @@ NoNewPrivileges=true
 ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target
