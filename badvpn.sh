@@ -27,3 +27,7 @@ chmod 777 /bin/badvpn-udpgw
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 	  echo -e "exit 0" >> /etc/rc.local
+	  
+chmod 755 /etc/rc.local
+systemctl restart rc-local.service
+systemctl start rc-local.service
