@@ -15,7 +15,7 @@ chmod 777 /bin/badvpn-udpgw
 	   screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 1000 --max-connections-for-client 1000
 	   screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 1000 --max-connections-for-client 1000
      
-     
+           echo -e "#!/bin/bash" >> /etc/rc.local
            echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7000 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
@@ -26,3 +26,4 @@ chmod 777 /bin/badvpn-udpgw
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
 		       echo -e "screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 1000 --max-connections-for-client 1000" >> /etc/rc.local
+	  echo -e "exit 0" >> /etc/rc.local
