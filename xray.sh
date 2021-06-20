@@ -7,7 +7,8 @@ RED="\033[31m"      # Error message
 GREEN="\033[32m"    # Success message
 YELLOW="\033[33m"   # Warning message
 BLUE="\033[36m"     # Info message
-PLAIN='\033[0m'
+PLAIN='\033[0m' nano /etc/nginx/nginx.conf
+
 
 # 以下网站是随机从Google上找到的无广告小说网站，不喜欢请改成其他网址，以http或https开头
 # 搭建好后无法打开伪装域名，可能是反代小说网站挂了，请在网站留言，或者Github发issue，以便替换新的网站
@@ -597,7 +598,7 @@ configNginx() {
             user="nginx"
         fi
         cat > /etc/nginx/nginx.conf<<-EOF
-user $user;
+user root;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
 pid /run/nginx.pid;
