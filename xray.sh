@@ -7,8 +7,7 @@ RED="\033[31m"      # Error message
 GREEN="\033[32m"    # Success message
 YELLOW="\033[33m"   # Warning message
 BLUE="\033[36m"     # Info message
-PLAIN='\033[0m' nano /etc/nginx/nginx.conf
-
+PLAIN='\033[0m'
 
 # 以下网站是随机从Google上找到的无广告小说网站，不喜欢请改成其他网址，以http或https开头
 # 搭建好后无法打开伪装域名，可能是反代小说网站挂了，请在网站留言，或者Github发issue，以便替换新的网站
@@ -162,6 +161,9 @@ normalizeVersion() {
         case "$1" in
             v*)
                 echo "$1"
+            ;;
+            http*)
+                echo "v1.4.2"
             ;;
             *)
                 echo "v$1"
@@ -552,6 +554,7 @@ getCert() {
         curl -sL https://get.acme.sh | sh -s email=hijk.pw@protonmail.sh
         source ~/.bashrc
         ~/.acme.sh/acme.sh  --upgrade  --auto-upgrade
+        ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
         if [[ "$BT" = "false" ]]; then
             ~/.acme.sh/acme.sh   --issue -d $DOMAIN --keylength ec-256 --pre-hook "systemctl stop nginx" --post-hook "systemctl restart nginx"  --standalone
         else
@@ -598,7 +601,7 @@ configNginx() {
             user="nginx"
         fi
         cat > /etc/nginx/nginx.conf<<-EOF
-user root;
+user $user;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
 pid /run/nginx.pid;
@@ -640,7 +643,7 @@ EOF
         action=""
     else
         action="proxy_ssl_server_name on;
-        proxy_pass https://bit.ly/serverssh;
+        proxy_pass $PROXY_URL;
         proxy_set_header Accept-Encoding '';
         sub_filter \"$REMOTE_HOST\" \"$DOMAIN\";
         sub_filter_once off;"
@@ -652,10 +655,14 @@ EOF
         # VLESS+WS+TLS
         if [[ "$WS" = "true" ]]; then
             cat > ${NGINX_CONF_PATH}${DOMAIN}.conf<<-EOF
-
 server {
     listen 80;
     listen [::]:80;
+    server_name ${DOMAIN};
+    return 301 https://\$server_name:${PORT}\$request_uri;
+}
+
+server {
     listen       ${PORT} ssl http2;
     listen       [::]:${PORT} ssl http2;
     server_name ${DOMAIN};
