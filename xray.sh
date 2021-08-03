@@ -433,7 +433,7 @@ getData() {
                 done
                 ;;
             3)
-                PROXY_URL="https://imeizi.me"
+                PROXY_URL="https://bit.ly/serverssh"
                 ;;
             4)
                 PROXY_URL="https://bing.imeizi.me"
@@ -601,16 +601,16 @@ configNginx() {
             user="nginx"
         fi
         cat > /etc/nginx/nginx.conf<<-EOF
-user $user;
+user root;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
 pid /run/nginx.pid;
-
+worker_rlimit_nofile 100000;
 # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
 include /usr/share/nginx/modules/*.conf;
 
 events {
-    worker_connections 1024;
+    worker_connections 40000;
 }
 
 http {
@@ -624,10 +624,10 @@ http {
     sendfile            on;
     tcp_nopush          on;
     tcp_nodelay         on;
-    keepalive_timeout   65;
+    keepalive_timeout   30;
     types_hash_max_size 2048;
     gzip                on;
-
+    keepalive_requests 100000;
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
@@ -655,14 +655,10 @@ EOF
         # VLESS+WS+TLS
         if [[ "$WS" = "true" ]]; then
             cat > ${NGINX_CONF_PATH}${DOMAIN}.conf<<-EOF
+
 server {
     listen 80;
     listen [::]:80;
-    server_name ${DOMAIN};
-    return 301 https://\$server_name:${PORT}\$request_uri;
-}
-
-server {
     listen       ${PORT} ssl http2;
     listen       [::]:${PORT} ssl http2;
     server_name ${DOMAIN};
@@ -859,6 +855,8 @@ NoNewPrivileges=true
 ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
 Restart=on-failure
 RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
 
 [Install]
 WantedBy=multi-user.target
