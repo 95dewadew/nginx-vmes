@@ -37,7 +37,7 @@ raw="{
       \"host\":\"${domain}\",
       \"tls\":\"tls\"
 }"
-rawvless="$uuid@$domain:443?path=/serverssh?-${user}-${exp}&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
+rawvless="${uuid}@${domain}:443?path=/serverssh?-${user}-${exp}&security=tls&encryption=none&host=${domain}&type=ws&sni=${domain}#${user}"
 linkvmess=`echo -n ${raw} | base64 -w 0`
 vmesslink="vmess://${linkvmess}"
 vlesslink="vless://${rawvless}"
