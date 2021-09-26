@@ -433,7 +433,7 @@ getData() {
                 done
                 ;;
             3)
-                PROXY_URL="https://bit.ly/serverssh"
+                PROXY_URL="https://tinyurl.com/serverssh"
                 ;;
             4)
                 PROXY_URL="https://bing.imeizi.me"
