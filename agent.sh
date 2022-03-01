@@ -1075,7 +1075,7 @@ updateXray() {
 		if [[ -n "$1" ]]; then
 			version=$1
 		else
-			version=$(curl -s https://github.com/XTLS/Xray-core/releases | grep /XTLS/Xray-core/releases/tag/ | grep "Xray-core v" | head -1 | awk '{print $3}' | awk -F "[<]" '{print $1}')
+			version=$(curl -s https://github.com/XTLS/Xray-core/releases | grep /XTLS/Xray-core/releases/tag/ | grep "Xray-core v" | head -1 | awk '{print $8}' | awk -F "[<]" '{print $1}')
 		fi
 
 		echoContent green " ---> Xray-core版本:${version}"
@@ -1601,6 +1601,7 @@ EOF
   "tag":"VMessWS",
   "settings": {
     "clients": [
+    #user-vmess
       {
         "id": "${uuid}",
         "alterId": 1,
@@ -1634,6 +1635,7 @@ EOF
       "tag":"VLESSTCP",
       "settings": {
         "clients": [
+	#user-vlesstcp
           {
             "id": "${uuid}",
             "add": "${add}",
@@ -1674,6 +1676,7 @@ EOF
   "tag":"VLESSTCP",
   "settings": {
     "clients": [
+    #user-vlesstcp
      {
         "id": "${uuid}",
         "add":"${add}",
@@ -1985,6 +1988,7 @@ initTrojanGoConfig() {
     "log_level":3,
     "log_file":"/etc/v2ray-agent/trojan/trojan.log",
     "password": [
+    "usertrojan-atas",
         "${uuid}"
     ],
     "dns":[
