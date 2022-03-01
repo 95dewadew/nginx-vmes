@@ -1831,6 +1831,7 @@ EOF
   "tag":"VLESSWS",
   "settings": {
     "clients": [
+    #user-vless
       {
         "id": "${uuid}",
         "email": "${domain}_vless_ws"
