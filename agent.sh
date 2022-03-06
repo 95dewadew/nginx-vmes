@@ -2006,7 +2006,7 @@ initTrojanGoConfig() {
     },
     "websocket": {
         "enabled": true,
-        "path": "/${customPath}tws",
+        "path": "/trojan",
         "host": "${domain}",
         "add":"${add}"
     },
