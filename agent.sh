@@ -1516,7 +1516,7 @@ EOF
 
 	# VLESS_WS_TLS
 	if echo "${selectCustomInstallType}" | grep -q 1 || [[ "$1" == "all" ]]; then
-		fallbacksList=${fallbacksList}',{"path":"/'${customPath}'ws","dest":31297,"xver":1}'
+		fallbacksList=${fallbacksList}',{"path":"/vless","dest":31297,"xver":1}'
 		cat <<EOF >/etc/v2ray-agent/v2ray/conf/03_VLESS_WS_inbounds.json
 {
 "inbounds":[
@@ -1527,7 +1527,7 @@ EOF
   "tag":"VLESSWS",
   "settings": {
     "clients": [
-    #user-vless
+  #user-vless
       {
         "id": "${uuid}",
         "email": "${domain}_vless_ws"
@@ -1540,7 +1540,7 @@ EOF
     "security": "none",
     "wsSettings": {
       "acceptProxyProtocol": true,
-      "path": "/${customPath}ws"
+      "path": "/vless"
     }
   }
 }
@@ -1593,7 +1593,7 @@ EOF
 
 	# VMess_WS
 	if echo "${selectCustomInstallType}" | grep -q 3 || [[ "$1" == "all" ]]; then
-		fallbacksList=${fallbacksList}',{"path":"/'${customPath}'vws","dest":31299,"xver":1}'
+		fallbacksList=${fallbacksList}',{"path":"/vmess","dest":31299,"xver":1}'
 		cat <<EOF >/etc/v2ray-agent/v2ray/conf/05_VMess_WS_inbounds.json
 {
 "inbounds":[
@@ -1617,7 +1617,7 @@ EOF
     "security": "none",
     "wsSettings": {
       "acceptProxyProtocol": true,
-      "path": "/${customPath}vws"
+      "path": "/vmess"
     }
   }
 }
@@ -1822,7 +1822,7 @@ EOF
 
 	# VLESS_WS_TLS
 	if echo "${selectCustomInstallType}" | grep -q 1 || [[ "$1" == "all" ]]; then
-		fallbacksList=${fallbacksList}',{"path":"/'${customPath}'ws","dest":31297,"xver":1}'
+		fallbacksList=${fallbacksList}',{"path":"/vless","dest":31297,"xver":1}'
 		cat <<EOF >/etc/v2ray-agent/xray/conf/03_VLESS_WS_inbounds.json
 {
 "inbounds":[
@@ -1846,7 +1846,7 @@ EOF
     "security": "none",
     "wsSettings": {
       "acceptProxyProtocol": true,
-      "path": "/${customPath}ws"
+      "path": "/vless"
     }
   }
 }
@@ -1899,7 +1899,7 @@ EOF
 
 	# VMess_WS
 	if echo "${selectCustomInstallType}" | grep -q 3 || [[ "$1" == "all" ]]; then
-		fallbacksList=${fallbacksList}',{"path":"/'${customPath}'vws","dest":31299,"xver":1}'
+		fallbacksList=${fallbacksList}',{"path":"/vmess","dest":31299,"xver":1}'
 		cat <<EOF >/etc/v2ray-agent/xray/conf/05_VMess_WS_inbounds.json
 {
 "inbounds":[
@@ -1923,7 +1923,7 @@ EOF
     "security": "none",
     "wsSettings": {
       "acceptProxyProtocol": true,
-      "path": "/${customPath}vws"
+      "path": "/vmess"
     }
   }
 }
