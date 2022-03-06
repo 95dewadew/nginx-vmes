@@ -1527,7 +1527,7 @@ EOF
   "tag":"VLESSWS",
   "settings": {
     "clients": [
-    #user-vmess
+    #user-vless
       {
         "id": "${uuid}",
         "email": "${domain}_vless_ws"
