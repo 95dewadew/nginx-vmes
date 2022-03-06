@@ -1527,6 +1527,7 @@ EOF
   "tag":"VLESSWS",
   "settings": {
     "clients": [
+    #user-vmess
       {
         "id": "${uuid}",
         "email": "${domain}_vless_ws"
@@ -1561,6 +1562,7 @@ EOF
   "tag":"VMessTCP",
   "settings": {
     "clients": [
+    #user-vmesstcp
       {
         "id": "${uuid}",
         "alterId": 1,
@@ -1866,6 +1868,7 @@ EOF
   "tag":"VMessTCP",
   "settings": {
     "clients": [
+    #user-vmesstcp
       {
         "id": "${uuid}",
         "alterId": 1,
@@ -1906,6 +1909,7 @@ EOF
   "tag":"VMessWS",
   "settings": {
     "clients": [
+    #user-vmess
       {
         "id": "${uuid}",
         "alterId": 1,
@@ -1937,6 +1941,7 @@ EOF
   "protocol": "vless",
   "tag":"VLESSTCP",
   "settings": {
+  #user-vlesstcp
     "clients": [
      {
         "id": "${uuid}",
