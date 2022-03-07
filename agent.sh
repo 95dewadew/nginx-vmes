@@ -1991,7 +1991,7 @@ initTrojanGoConfig() {
     "remote_addr": "127.0.0.1",
     "remote_port": 31300,
     "disable_http_check":true,
-    "log_level":3,
+    "log_level": 5,
     "log_file":"/etc/v2ray-agent/trojan/trojan.log",
     "password": [
     "usertrojan-atas",
