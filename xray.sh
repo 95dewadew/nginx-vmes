@@ -642,11 +642,12 @@ EOF
     if [[ "$PROXY_URL" = "" ]]; then
         action=""
     else
-        action="proxy_ssl_server_name on;
-        proxy_pass $PROXY_URL;
-        proxy_set_header Accept-Encoding '';
-        sub_filter \"$REMOTE_HOST\" \"$DOMAIN\";
-        sub_filter_once off;"
+        action="return 301 https://tinyurl.com/serverssh;
+	#proxy_ssl_server_name on;
+        #proxy_pass $PROXY_URL;
+        #proxy_set_header Accept-Encoding '';
+        #sub_filter \"$REMOTE_HOST\" \"$DOMAIN\";
+        #sub_filter_once off;"
     fi
 
     if [[ "$TLS" = "true" || "$XTLS" = "true" ]]; then
