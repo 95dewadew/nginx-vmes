@@ -624,6 +624,9 @@ http {
     sendfile            on;
     tcp_nopush          on;
     tcp_nodelay         on;
+    reset_timedout_connection on;
+    client_body_timeout 10;
+    send_timeout 2;
     keepalive_timeout   30;
     types_hash_max_size 2048;
     gzip                on;
